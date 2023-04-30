@@ -43,6 +43,16 @@ pipeline {
         sh 'docker push noor1718/healthcare:latest'
             }
            }
+	   stage ('Configure Test-server with Terraform'){
+      steps {
+        dir('serverfiles'){
+        sh 'sudo chmod 600 msk.pem'
+        sh 'terraform init'
+        sh 'terraform validate'
+        sh 'terraform apply --auto-approve'
+                }
+          }   
+       }
 
 	 
 	 
