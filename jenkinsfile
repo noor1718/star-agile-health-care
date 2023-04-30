@@ -26,6 +26,11 @@ pipeline {
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/healthcare', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
            }
    	 }
+	 stage('Image creation') {
+      steps {
+        sh 'docker build -t noor1718/healthcare:latest .'
+                    }
+            }
 	 
 	 
 	 
