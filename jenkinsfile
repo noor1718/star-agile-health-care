@@ -10,7 +10,7 @@ pipeline {
     stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
-	git 'https://github.com/Fatima-Ishrath021/star-agile-health-care.git'
+	git 'https://github.com/noor1718/star-agile-health-care.git'
             }
     }
    
@@ -20,43 +20,27 @@ pipeline {
         sh 'mvn clean package'
            }
    	 }
-   stage('HTML reports') {
-      steps {
-        echo 'publishing HTML reports'
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/health-care-project', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-           }
-   	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 }
+	 }
+	
+		 
 
-stage('Image creation') {
-      steps {
-        sh 'docker build -t fatima021/health-care021:latest .'
-                    }
-            }
-
-stage('Docker Login') {
-      steps {
-	withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'dockerpsswd', usernameVariable: 'dockeruser')]) {
-        sh "docker login -u ${env.dockeruser} -p ${env.dockerpsswd}"
-}
-            }
-      }
-
- stage('Push Image to Docker Registry') {
-      steps {
-        sh 'docker push fatima021/health-care021:latest'
-            }
-           }
-    stage ('Configure Test-server with Terraform'){
-      steps {
-        dir('serverfiles'){
-        sh 'sudo chmod 600 fatima.pem'
-        sh 'terraform init'
-        sh 'terraform validate'
-        sh 'terraform apply --auto-approve'
-                }
-          }   
-       }
-
-}
-}
 
